@@ -7,15 +7,19 @@ public class Game {
     private Player player1;
     private Player player2;
     private Die die;
-    private int round;
+    private int nextPlayerNumber;
     private Scanner scanner;
 
     public Game() {
-        this.player1 = new Player("Player 1");
-        this.player2 = new Player("Player 2");
-        this.round = 0;
+        this.player1 = new Player("Player 1", 1);
+        this.player2 = new Player("Player 2", 2);
+        this.nextPlayerNumber = 1;
         this.scanner = new Scanner(System.in);
         this.die = new Die();
+    }
+
+    private void setNextPlayer(Player player) {
+        this.nextPlayerNumber = player.getPlayerNumber();
     }
 
     /**
@@ -37,16 +41,17 @@ public class Game {
 
     public void start() {
         while (true) { 
-            if (round % 2 == 0) {
+            if (this.nextPlayerNumber == 1) {
                 Util.print(this.player1.getPlayerName() + " press enter to roll");
                 waitForEnter();
                 roll(this.player1);
+                setNextPlayer(this.player2);
             } else {
                 Util.print(this.player2.getPlayerName() + " press enter to roll");
                 waitForEnter();
                 roll(this.player2);
+                setNextPlayer(this.player1);
             }
-            round++;
             Util.print(this.player1.getPlayerName() + " score: " + this.player1.getScore());
             Util.print(this.player2.getPlayerName() + " score: " + this.player2.getScore());
         }
