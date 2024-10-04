@@ -39,10 +39,25 @@ public class Game {
         if (roll1 == 1 && roll2 == 1) {
             player.resetScore();
             Util.print(player.getPlayerName() + " rolled two ones, so their score was set to zero");
+            setNextPlayer(player);
+            return;
+        } 
+        if (roll1 == roll2) {
+            player.addScore(roll1 + roll2);
+            setNextPlayer(player);
+            Util.print(player.getPlayerName() + " rolled a pair of " + roll1 + "'s so they got an extra turn");
             return;
         }
         player.addScore(roll1 + roll2);
         Util.print(player.getPlayerName() + " rolled " + (roll1 + roll2));
+        switch (player.getPlayerNumber()) {
+            case 1:
+                setNextPlayer(this.player2);
+                break;
+            case 2:
+                setNextPlayer(this.player1);
+                break;
+        }
     }
 
     public void start() {
@@ -58,12 +73,10 @@ public class Game {
                 Util.print(this.player1.getPlayerName() + " press enter to roll");
                 waitForEnter();
                 roll(this.player1);
-                setNextPlayer(this.player2);
             } else {
                 Util.print(this.player2.getPlayerName() + " press enter to roll");
                 waitForEnter();
                 roll(this.player2);
-                setNextPlayer(this.player1);
             }
             Util.print(this.player1.getPlayerName() + " score: " + this.player1.getScore());
             Util.print(this.player2.getPlayerName() + " score: " + this.player2.getScore());
