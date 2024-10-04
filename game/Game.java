@@ -49,7 +49,7 @@ public class Game {
             return;
         }
         player.addScore(roll1 + roll2);
-        Util.print(player.getPlayerName() + " rolled " + (roll1 + roll2));
+        Util.print(player.getPlayerName() + " rolled " + roll1 + " and " + roll2);
         switch (player.getPlayerNumber()) {
             case 1:
                 setNextPlayer(this.player2);
