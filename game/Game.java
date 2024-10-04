@@ -11,8 +11,8 @@ public class Game {
     private Scanner scanner;
 
     public Game() {
-        this.player1 = new Player();
-        this.player2 = new Player();
+        this.player1 = new Player("Player 1");
+        this.player2 = new Player("Player 2");
         this.round = 0;
         this.scanner = new Scanner(System.in);
         this.die = new Die();
@@ -25,27 +25,30 @@ public class Game {
         this.scanner.nextLine(); 
     }
 
+    /**
+     * rolls the die twice, adds the score and prints the result
+     */
+    private void roll(Player player) { 
+        int roll1 = this.die.roll().getFaceValue();
+        int roll2 = this.die.roll().getFaceValue();
+        player.addScore(roll1 + roll2);
+        Util.print(player.getPlayerName() + " rolled " + (roll1 + roll2));
+    }
+
     public void start() {
-        Util.print("game started");
         while (true) { 
             if (round % 2 == 0) {
-                Util.print("player 1 press enter to roll");
+                Util.print(this.player1.getPlayerName() + " press enter to roll");
                 waitForEnter();
-                int roll1 = this.die.roll().getFaceValue();
-                int roll2 = this.die.roll().getFaceValue();
-                Util.print("player 1 rolled " + (roll1+roll2));
-                this.player1.addScore(roll1+roll2);
+                roll(this.player1);
             } else {
-                Util.print("player 2 press enter to roll");
+                Util.print(this.player2.getPlayerName() + " press enter to roll");
                 waitForEnter();
-                int roll1 = this.die.roll().getFaceValue();
-                int roll2 = this.die.roll().getFaceValue();
-                Util.print("player 2 rolled " + (roll1+roll2));
-                this.player2.addScore(roll1+roll2);
+                roll(this.player2);
             }
             round++;
-            Util.print("player1 score: " + this.player1.getScore());
-            Util.print("player2 score: " + this.player2.getScore());
+            Util.print(this.player1.getPlayerName() + " score: " + this.player1.getScore());
+            Util.print(this.player2.getPlayerName() + " score: " + this.player2.getScore());
         }
     }
 
