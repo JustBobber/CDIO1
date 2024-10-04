@@ -9,6 +9,7 @@ public class Game {
     private Die die;
     private int nextPlayerNumber;
     private Scanner scanner;
+    final private int MAX_SCORE = 40;
 
     public Game() {
         this.player1 = new Player("Player 1", 1);
@@ -40,7 +41,14 @@ public class Game {
     }
 
     public void start() {
-        while (true) { 
+        while (true) {
+            if (this.player1.getScore() >= MAX_SCORE) {
+                Util.print(this.player1.getPlayerName() + " has won the game!");
+                break;
+            } else if (this.player2.getScore() >= MAX_SCORE) {
+                Util.print(this.player2.getPlayerName() + " has won the game!");
+                break;
+            }
             if (this.nextPlayerNumber == 1) {
                 Util.print(this.player1.getPlayerName() + " press enter to roll");
                 waitForEnter();
