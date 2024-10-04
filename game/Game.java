@@ -12,10 +12,7 @@ public class Game {
     final private int MAX_SCORE = 40;
     private boolean gameOver;
 
-    public Game() {
-
-        Util.welcome();
-        
+    public Game() {        
         this.player1 = new Player("Player 1", 1);
         this.player2 = new Player("Player 2", 2);
         this.nextPlayerNumber = 1;
