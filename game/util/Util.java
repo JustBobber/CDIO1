@@ -7,6 +7,7 @@ public class Util {
     }
 
     public static void welcome(){
+        System.out.println("");        
         System.out.println(" /$$      /$$           /$$                                             ");
         System.out.println("| $$  /$ | $$          | $$                                             ");
         System.out.println("| $$ /$$$| $$  /$$$$$$ | $$  /$$$$$$$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$  ");
