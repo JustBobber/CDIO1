@@ -41,26 +41,44 @@ public class Game {
     private void roll(Player player) { 
         int roll1 = this.die.roll().getFaceValue();
         int roll2 = this.die.roll().getFaceValue();
+
+        if (player.getScore() >= MAX_SCORE) {
+            if (roll1 == roll2) {
+                Util.print(player.getPlayerName() + " rolled a pair of " + roll1 + "'s");
+                win(player);
+                return;
+            } else {
+                setNextPlayer(player.getPlayerNumber() == 1 ? this.player2 : this.player1);
+                Util.print(player.getPlayerName() + " rolled " + roll1 + " and " + roll2 + " but they need to roll a pair to win the game");
+                return;
+            }
+        }
+
         if (roll1 == 1 && roll2 == 1) {
             player.resetScore();
             Util.print(player.getPlayerName() + " rolled two ones, so their score was set to zero");
             setNextPlayer(player);
             return;
         } 
+
         if (roll1 == roll2) {
             if (roll1 == 6 && roll2 == 6) {
                 if (player.isLastThrowPairSix()) {
+                    Util.print(player.getPlayerName() + " rolled two pairs of sixes in a row");
                     win(player);
                     return;
                 } else {
                     player.setLastThrowPairSix(true);
                 }
+            } else {
+                player.setLastThrowPairSix(false);
             }
             player.addScore(roll1 + roll2);
             setNextPlayer(player);
             Util.print(player.getPlayerName() + " rolled a pair of " + roll1 + "'s so they got an extra turn");
             return;
         }
+
         player.addScore(roll1 + roll2);
         Util.print(player.getPlayerName() + " rolled " + roll1 + " and " + roll2);
         switch (player.getPlayerNumber()) {
@@ -86,13 +104,6 @@ public class Game {
      */
     public void start() {
         while (!gameOver) {
-            if (this.player1.getScore() >= MAX_SCORE) {
-                win(this.player1);
-                break;
-            } else if (this.player2.getScore() >= MAX_SCORE) {
-                win(this.player2);
-                break;
-            }
             if (this.nextPlayerNumber == 1) {
                 Util.print(this.player1.getPlayerName() + " press enter to roll");
                 waitForEnter();
