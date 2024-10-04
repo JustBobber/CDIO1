@@ -57,6 +57,7 @@ public class Game {
         if (roll1 == 1 && roll2 == 1) {
             player.resetScore();
             Util.print(player.getPlayerName() + " rolled two ones, so their score was set to zero");
+            Util.print(player.getPlayerName() + " rolled a pair of " + roll1 + "'s so they got an extra turn");
             setNextPlayer(player);
             return;
         } 
