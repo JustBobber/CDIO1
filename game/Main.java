@@ -1,9 +1,9 @@
-class Main {
+package game;
+
+public class Main {
     public static void main(String[] args){
-        
-        System.out.println("Yellow World");
-
-
+        Game game = new Game();
+        game.start();
     }
 
 }
