@@ -1,18 +1,21 @@
 package game;
 
-import game.util.Util;
-
 public class Player {
 
     private int score;
+    private String playerName;
 
-    public Player() {
+    public Player(String playerName) {
         this.score = 0;
-        Util.print("player initialized with score " + this.score);
+        this.playerName = playerName;
     }
 
     public int getScore() {
         return this.score;
+    }
+
+    public String getPlayerName() {
+        return this.playerName;
     }
 
     public void addScore(int points) {
