@@ -36,6 +36,11 @@ public class Game {
     private void roll(Player player) { 
         int roll1 = this.die.roll().getFaceValue();
         int roll2 = this.die.roll().getFaceValue();
+        if (roll1 == 1 && roll2 == 1) {
+            player.resetScore();
+            Util.print(player.getPlayerName() + " rolled two ones, so their score was set to zero");
+            return;
+        }
         player.addScore(roll1 + roll2);
         Util.print(player.getPlayerName() + " rolled " + (roll1 + roll2));
     }

@@ -28,4 +28,8 @@ public class Player {
         this.score += points;
     }
 
+    public void resetScore() {
+        this.score = 0;
+    }
+
 }
