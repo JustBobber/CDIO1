@@ -10,6 +10,7 @@ public class Game {
     private int nextPlayerNumber;
     private Scanner scanner;
     final private int MAX_SCORE = 40;
+    private boolean gameOver;
 
     public Game() {
 
@@ -20,8 +21,12 @@ public class Game {
         this.nextPlayerNumber = 1;
         this.scanner = new Scanner(System.in);
         this.die = new Die();
+        this.gameOver = false;
     }
 
+    /**
+     * set the next player
+     */
     private void setNextPlayer(Player player) {
         this.nextPlayerNumber = player.getPlayerNumber();
     }
@@ -46,6 +51,14 @@ public class Game {
             return;
         } 
         if (roll1 == roll2) {
+            if (roll1 == 6 && roll2 == 6) {
+                if (player.isLastThrowPairSix()) {
+                    win(player);
+                    return;
+                } else {
+                    player.setLastThrowPairSix(true);
+                }
+            }
             player.addScore(roll1 + roll2);
             setNextPlayer(player);
             Util.print(player.getPlayerName() + " rolled a pair of " + roll1 + "'s so they got an extra turn");
@@ -63,13 +76,24 @@ public class Game {
         }
     }
 
+    /**
+     * end the game
+     */
+    public void win(Player player) {
+        Util.print(player.getPlayerName() + " has won the game!");
+        this.gameOver = true;
+    }
+
+    /**
+     * start the game loop
+     */
     public void start() {
-        while (true) {
+        while (!gameOver) {
             if (this.player1.getScore() >= MAX_SCORE) {
-                Util.print(this.player1.getPlayerName() + " has won the game!");
+                win(this.player1);
                 break;
             } else if (this.player2.getScore() >= MAX_SCORE) {
-                Util.print(this.player2.getPlayerName() + " has won the game!");
+                win(this.player2);
                 break;
             }
             if (this.nextPlayerNumber == 1) {
