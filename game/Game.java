@@ -12,11 +12,15 @@ public class Game {
     final private int MAX_SCORE = 40;
     private boolean gameOver;
 
-    public Game() {        
-        this.player1 = new Player("Player 1", 1);
-        this.player2 = new Player("Player 2", 2);
-        this.nextPlayerNumber = 1;
+    public Game() {       
         this.scanner = new Scanner(System.in);
+        Util.print("Player 1 enter your name and press enter");
+        String playerOneName = this.scanner.nextLine();
+        Util.print("Player 2 enter your name and press enter");
+        String playerTwoName = this.scanner.nextLine();
+        this.player1 = new Player(playerOneName, 1);
+        this.player2 = new Player(playerTwoName, 2);
+        this.nextPlayerNumber = 1;
         this.die = new Die();
         this.gameOver = false;
     }
