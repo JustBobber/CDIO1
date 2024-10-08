@@ -6,7 +6,7 @@ public class Util {
         System.out.println(message);
     }
 
-    public static void welcome() {
+    public static void welcomeLineOne() {
         System.out.println("");
         System.out.println(" /$$      /$$           /$$                                             ");
         System.out.println("| $$  /$ | $$          | $$                                             ");
@@ -17,6 +17,19 @@ public class Util {
         System.out.println("| $$/   \\  $$|  $$$$$$$| $$|  $$$$$$$|  $$$$$$/| $$ | $$ | $$|  $$$$$$$ ");
         System.out.println("|__/     \\__/ \\_______/|__/ \\_______/ \\______/ |__/ |__/ |__/ \\_______/ ");
         System.out.println("");
+    }
+
+    public static void welcomeLineTwo() {
+        print("");
+        print(" /$$$$$$$$$$$$$$                               ");
+        print(" |_____ $$_____/                               ");
+        print("      | $$   /$$$$$$                           ");
+        print("      | $$  /$$__  $$                          ");
+        print("      | $$ | $$  \\ $$                         ");
+        print("      | $$ | $$  | $$                          ");
+        print("      | $$ |  $$$$$$/                          ");
+        print("      |___/\\______/                                           Dice Game");
+        print("");
     }
 
 }
